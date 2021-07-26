@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bosh sahifa</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-md-3">
+                <center>
+                    <img src="https://www.pinclipart.com/picdir/big/532-5326217_creative-tail-people-worker-circle-with-a-line.png" class="avatar" alt="">
+                    <h3>{{request.user.first_name}}</h3>
+                    <h5>{{request.user.last_name}}</h5>
+                    <hr>
+                </center>
+                <div class="d-flex">
+                    <h4>Ishchilari:</h4>
+                    <a href="{% url 'main:add_worker' %}" class="btn btn-primary">Qo'shish</a>
+                </div>
+                
+                {% for workers in request.user.user_pro.workers.all %}
+                    <div class="card mt-3 p-2">
+                        <h3>{{workers.name}}</h3>
+                        <h5>{{workers.surname}}</h5>
+                        <p class="badge bg-primary">Ishlari: {{workers.works}}</p>
+                        <p class="badge bg-success">Olgan puli: {{workers.money}}</p>
+                    </div> 
+                {% endfor %} 
+            </div>
+
+            <div class="col-md-9">
+                <div class="row">
+                    
+                    {% for post in post %}
+                        <div class="col-md-4">
+                        <div class="card mt-3">
+                            <div class="card-header">
+                                <h3>Ish Nomi</h3>
+                            </div>
+                            <div class="card-body">
+                                <h4>Ish puli: 200$</h4>
+                                <h4>Ishchilarga: 120$</h4>
+                                {% for workers in request.user.user_pro.workers.all %}
+                                    <hr>
+                                    <div class="">
+                                        <h5>{{workers.name}}</h5>
+                                    </div> 
+                                {% endfor %} 
+                            </div>
+                            <div class="card-footer">
+                                <a href="" class="btn btn-warning"><span class="fa fa-edit"></span> Yangilash</a>
+                                <a href="" class="btn btn-danger"><span class="fa fa-trash-alt"></span> O'chirish</a>
+                                <a href="" class="btn btn-primary mt-2 w-100"><span class="fa fa-stop-circle"></span> Tugatish</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                        
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <style>
+        .avatar{
+            width: 150px;
+
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>

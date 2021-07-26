@@ -7,8 +7,8 @@ from django.contrib.auth.models import User
 class Workers(models.Model):
     name = models.CharField("name", max_length=150)
     surname = models.CharField("surname", max_length=150)
-    works = models.IntegerField("all works", blank=True)
-    money = models.IntegerField("money", blank=True)
+    works = models.IntegerField("all works", default=0)
+    money = models.IntegerField("money", default=0)
 
     def __str__(self):
         return self.name
